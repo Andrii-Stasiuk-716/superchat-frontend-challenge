@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Creator from "./components/Creator";
+import Card from "./components/Card";
+import Header from "./components/Header";
+import styled from 'styled-components';
+import {BrowserRouter as Router, Route} from "react-router-dom";
+
+const Wrapper = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Wrapper>
+        <Header />
+      </Wrapper>
+      <hr/>
+      <Wrapper>
+        <Route exact path='/' component={Creator} />
+        <Route exact path='/link' component={Card} />
+        
+        
+      </Wrapper>
+      
+    </Router>
   );
 }
 
