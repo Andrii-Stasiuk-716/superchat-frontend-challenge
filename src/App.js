@@ -20,7 +20,7 @@ function App() {
       </Wrapper>
       <hr/>
       <Wrapper>
-        <Route exact path='/' component={Creator} />
+        <Route exact path='/' component={Creator}/>
         <Route exact path='/link/:name/:repo' component={Card} />
         
         
