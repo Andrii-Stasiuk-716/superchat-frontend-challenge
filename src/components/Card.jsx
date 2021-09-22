@@ -92,6 +92,8 @@ const fetchData = async () => {
     useEffect(() => {
         fetchData()
     }, [])
+
+    
     const getUser = () => {
         
         
