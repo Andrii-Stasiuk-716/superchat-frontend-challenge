@@ -135,7 +135,7 @@ const Creator = () => {
                 </Column>
                 <Column>
                     <Title>Preview</Title>
-                    <Link to={{pathname: `/superchat-frontend-challenge/link/${username}/${repo}`, state: values}}>link</Link>
+                    <Link to={{pathname: `/superchat-frontend-challenge/link/${username || 'user'}/${repo}|| 'repo`, state: values}}>link</Link>
                     {/* <Link to={`/link/?color=${color}&textcolor=${textColor}&user=${username}`} >link</Link> */}
 
                     <Textarea

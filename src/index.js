@@ -10,7 +10,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica Neue, sans-serif;
-    color: #525252;
     
   }
 `;
