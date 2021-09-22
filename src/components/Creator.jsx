@@ -94,7 +94,7 @@ const Creator = () => {
     const [repo, setRepo] = useState('');
     const [color, setColor] = useState('#ffffff');
     const [textColor, setTextColor] = useState('#000000');
-    const [avatar, setAvatar] = useState('#000000');
+    const [avatar] = useState('');
     const value = `https://github.com/${username || 'user'}/${repo || 'repo'}?color=${color}`;
     const values = {
         username,
@@ -135,8 +135,8 @@ const Creator = () => {
                 </Column>
                 <Column>
                     <Title>Preview</Title>
-                    {/* <Link to={{pathname: '/link', state: values}}>link</Link> */}
-                    <Link to={`/link/?color=${color}&textcolor=${textColor}&user=${username}`} >link</Link>
+                    <Link to={{pathname: '/link', state: values}}>link</Link>
+                    {/* <Link to={`/link/?color=${color}&textcolor=${textColor}&user=${username}`} >link</Link> */}
 
                     <Textarea
                         value={value}

@@ -1,21 +1,21 @@
 import React from 'react';
-import { useLocation, useParams, useRouteMatch } from 'react-router';
+import { useLocation } from 'react-router';
 import styled from 'styled-components';
 
-// const Div = styled.div`
-//     background: ${props => props.param.color};
-//     color: ${props => props.param.textColor};
-// `;
+const Div = styled.div`
+    background: ${props => props.param.state.color};
+    color: ${props => props.param.state.textColor};
+`;
 
-const Card = (props) => {
+const Card = () => {
     const state = useLocation();
 
     return (
-        <div param={state}>
-            username: {'user'}
-            repository: {'repo'}
-            color: {'color'}
-        </div>
+        <Div param={state}>
+            <p>username: {state.state.username}</p>
+            <p>repository: {'repo'}</p>
+            <p>color: {'color'}</p>
+        </Div>
     );
 };
 
