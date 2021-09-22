@@ -95,7 +95,7 @@ const Creator = () => {
     const [color, setColor] = useState('#ffffff');
     const [textColor, setTextColor] = useState('#000000');
     const [avatar] = useState('');
-    const value = `https://bohdanomelianec.github.io/link/${username || 'user'}/${repo || 'repo'}`;
+    const value = `https://bohdanomelianec.github.io/superchat-frontend-challenge/link/${username || 'user'}/${repo || 'repo'}`;
     const values = {
         username,
         repo,
@@ -135,7 +135,7 @@ const Creator = () => {
                 </Column>
                 <Column>
                     <Title>Preview</Title>
-                    <Link to={{pathname: `/link/${username}/${repo}`, state: values}}>link</Link>
+                    <Link to={{pathname: `/superchat-frontend-challenge/link/${username}/${repo}`, state: values}}>link</Link>
                     {/* <Link to={`/link/?color=${color}&textcolor=${textColor}&user=${username}`} >link</Link> */}
 
                     <Textarea

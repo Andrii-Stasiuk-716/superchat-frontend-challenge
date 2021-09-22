@@ -19,7 +19,7 @@ const MainTitle = styled.h2`
 const Header = () => {
     return (
         <Nav>
-           <MainTitle ><Link to='/'>Crazy github links</Link></MainTitle> 
+           <MainTitle ><Link to='/superchat-frontend-challenge'>Crazy github links</Link></MainTitle> 
         </Nav>
     );
 };
