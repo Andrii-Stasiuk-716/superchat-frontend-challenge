@@ -13,7 +13,7 @@ const Card = () => {
     return (
         <Div param={state}>
             <p>username: {state.state.username}</p>
-            <p>repository: {'repo'}</p>
+            <p>repository: {state.state.repo}</p>
             <p>color: {'color'}</p>
         </Div>
     );

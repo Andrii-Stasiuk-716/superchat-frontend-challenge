@@ -21,7 +21,7 @@ function App() {
       <hr/>
       <Wrapper>
         <Route exact path='/' component={Creator} />
-        <Route exact path='/link' component={Card} />
+        <Route exact path='/link/:name/:repo' component={Card} />
         
         
       </Wrapper>
