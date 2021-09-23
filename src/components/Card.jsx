@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import styled from 'styled-components';
 
 const UserInfo = styled.div`
