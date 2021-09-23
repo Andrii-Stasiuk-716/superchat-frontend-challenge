@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import styled from 'styled-components';
 
 const UserInfo = styled.div`
@@ -19,8 +19,8 @@ const Main = styled.div`
     flex-direction: column;
     align-items: center;
 
-    background: ${props => props.param.state?.color};
-    color: ${props => props.param.state?.textColor};
+    background: ${props => '#' + props.param.color};
+    color: ${props => '#' + props.param.textColor};
     border-radius: 10px 10px 200px 200px;
 `;
 
@@ -49,9 +49,9 @@ const Additional = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: strech;
-    background: ${props => props.param.state?.color};
+    background: ${props => '#' + props.param.color};
     border-radius: 150px 150px 10px 10px;
-    color: ${props => props.param.state?.textColor};
+    color: ${props => '#' + props.param.textColor};
 `;
 
 const Avatar = styled.img`
@@ -95,20 +95,21 @@ const Card = () => {
     const [name, setName] = useState('Unknown');
     const [repo, setRepo] = useState({});
     const [contributors, setContr] = useState([]);
-    const state = useLocation();
+    const state = useParams();
+    console.log('params', state)
 
 const fetchData = async () => {
-    const data = await fetch(`https://api.github.com/users/${state.state.username}`)
+    const data = await fetch(`https://api.github.com/users/${state.name}`)
 
     if(data.ok) {
         const responce = await data.json();
         setAvatar(responce.avatar_url)
         setName(responce.login)
     
-        fetch(`https://api.github.com/users/${state.state.username}/repos`)
+        fetch(`https://api.github.com/users/${state.name}/repos`)
         .then(res => res.json())
         .then(res => {
-            const repos = res.filter(repo => repo.name === state.state.repo)
+            const repos = res.filter(repo => repo.name === state.repo)
             setRepo(...repos)
             return repos
         })

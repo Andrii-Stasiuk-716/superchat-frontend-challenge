@@ -21,7 +21,7 @@ function App() {
       <hr/>
       <Wrapper>
         <Route exact path='/superchat-frontend-challenge' component={Creator}/>
-        <Route exact path='/superchat-frontend-challenge/link/:name/:repo' component={Card} />
+        <Route exact path='/superchat-frontend-challenge/link/:name/:repo/:color/:textColor' component={Card} />
         
         
       </Wrapper>

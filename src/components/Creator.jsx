@@ -69,16 +69,15 @@ const Test = styled.div`
 const Creator = () => {
     const [username, setUsername] = useState('');
     const [repo, setRepo] = useState('');
-    const [color, setColor] = useState('#5ed5f3');
-    const [textColor, setTextColor] = useState('#ffffff');
-    const [avatar] = useState('');
-    const value = `https://bohdanomelianec.github.io/superchat-frontend-challenge/link/${username || 'user'}/${repo || 'repo'}`;
-    const values = {
-        username,
-        repo,
-        color,
-        textColor
-    }
+    const [color, setColor] = useState('5ed5f3');
+    const [textColor, setTextColor] = useState('ffffff');
+    const value = `https://bohdanomelianec.github.io/superchat-frontend-challenge/link/${username || 'user'}/${repo || 'repo'}/${color}/${textColor}`;
+    // const values = {
+    //     username,
+    //     repo,
+    //     color,
+    //     textColor
+    // }
 
     return (
         <div>
@@ -98,23 +97,22 @@ const Creator = () => {
                     <Title>Link options</Title>
                     <div>
                         <Label htmlFor='color'>Set background color:</Label>
-                        <ColorInput id="color" type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+                        <ColorInput id="color" type="color" value={'#' + color} onChange={(e) => setColor(e.target.value.slice(1))} />
                     </div>
                     <div>
                         <Label htmlFor='textcolor'>Set text color:</Label>
-                        <ColorInput id="textcolor" type="color" value={textColor} onChange={(e) => setTextColor(e.target.value)} />
+                        <ColorInput id="textcolor" type="color" value={'#' + textColor} onChange={(e) => setTextColor(e.target.value.slice(1))} />
                     </div>
                 </Column>
                 <Column>
                     <Title>Preview</Title>
-                    <Link to={{pathname: `/superchat-frontend-challenge/link/${username || 'user'}/${repo}|| 'repo`, state: values}}>link</Link>
-                    {/* <Link to={`/link/?color=${color}&textcolor=${textColor}&user=${username}`} >link</Link> */}
+                    {/* <Link to={{pathname: `/superchat-frontend-challenge/link/${username || 'user'}/${repo|| 'repo'}`, state: values}}>link</Link> */}
+                    <Link to={`/superchat-frontend-challenge/link/${username || 'user'}/${repo|| 'repo'}/${color}/${textColor}`} >link</Link>
 
                     <Textarea
                         value={value}
                         readOnly />
-                    <Test color={color} textColor={textColor}>
-                        <img src={avatar} alt='avatar' />
+                    <Test color={'#' + color} textColor={'#' + textColor}>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus nobis quia consectetur quibusdam repudiandae non eius neque facilis, libero odit numquam impedit eaque quaerat totam accusamus quae veniam praesentium voluptate.
                     </Test>
                 </Column>
