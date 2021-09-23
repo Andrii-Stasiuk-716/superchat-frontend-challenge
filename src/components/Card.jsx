@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import styled from 'styled-components';
 
 const UserInfo = styled.div`
@@ -18,7 +18,6 @@ const Main = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     background: ${props => '#' + props.param.color};
     color: ${props => '#' + props.param.textColor};
     border-radius: 10px 10px 200px 200px;
@@ -96,7 +95,18 @@ const Card = () => {
     const [repo, setRepo] = useState({});
     const [contributors, setContr] = useState([]);
     const state = useParams();
-    console.log('params', state)
+    const location = useLocation();
+    const param = getParam(location);
+
+function getParam(name) {
+    var s = name.search;
+    let arr = s.slice(1).split('&');
+    let ob = {}
+    
+    ob.color = arr[0].slice(arr[0].indexOf('=') + 1)
+    ob.textColor = arr[1].slice(arr[1].indexOf('=') + 1)
+    return ob
+}
 
 const fetchData = async () => {
     const data = await fetch(`https://api.github.com/users/${state.name}`)
@@ -130,16 +140,18 @@ const fetchData = async () => {
 
     return (
         <UserInfo >
-            <Main param={state}>
+            <Main param={param}>
                 <Avatar src={avatar}/>
                 <UserName>{name}</UserName>
             </Main>
             <Buttons>
-                <button>Star {repo ? repo.stargazers_count : '?'}</button>
+                <a href={`https://github.com/${name}/${repo?.name}/stargazers`} target='_blank' rel='noreferrer'>
+                    <button>Star {repo ? repo.stargazers_count : '?'}</button>
+                </a>
             </Buttons>
             
             <Repo>{repo ? repo.name : 'Your repository'}</Repo>
-            <Additional param={state}>
+            <Additional param={param}>
                 <Block>
                     <Header3>Short description</Header3>
                     <p>{repo ? repo.description : 'No description'}</p>
@@ -152,12 +164,8 @@ const fetchData = async () => {
                         contributors.map(item => <li key={item.toString()}>{item}</li>)
                     }
                     </OList>
-                </Block>
-                
-                
+                </Block> 
             </Additional>
-            
-            
         </UserInfo>
     );
 };

@@ -71,13 +71,7 @@ const Creator = () => {
     const [repo, setRepo] = useState('');
     const [color, setColor] = useState('5ed5f3');
     const [textColor, setTextColor] = useState('ffffff');
-    const value = `https://bohdanomelianec.github.io/superchat-frontend-challenge/link/${username || 'user'}/${repo || 'repo'}/${color}/${textColor}`;
-    // const values = {
-    //     username,
-    //     repo,
-    //     color,
-    //     textColor
-    // }
+    const value = `https://bohdanomelianec.github.io/superchat-frontend-challenge/link/${username || 'user'}/${repo || 'repo'}/?c=${color}&tc=${textColor}`;
 
     return (
         <div>
@@ -106,9 +100,7 @@ const Creator = () => {
                 </Column>
                 <Column>
                     <Title>Preview</Title>
-                    {/* <Link to={{pathname: `/superchat-frontend-challenge/link/${username || 'user'}/${repo|| 'repo'}`, state: values}}>link</Link> */}
-                    <Link to={`/superchat-frontend-challenge/link/${username || 'user'}/${repo|| 'repo'}/${color}/${textColor}`} >link</Link>
-
+                    <Link to={`/superchat-frontend-challenge/link/${username || 'user'}/${repo|| 'repo'}/?c=${color}&tc=${textColor}`} >link</Link>
                     <Textarea
                         value={value}
                         readOnly />
@@ -117,7 +109,6 @@ const Creator = () => {
                     </Test>
                 </Column>
             </Columns>
-
         </div>
     );
 };
