@@ -46,29 +46,6 @@ const ColorInput = styled.input`
     cursor: pointer;
 `;
 
-const FileInput = styled.input`
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-`;
-
-const FileLabel = styled.label`
-    display: inline-block;
-    padding: 7px;
-    font-size: 14px;
-    border-radius: 5px;
-    background: #005372;
-    color: #fff;
-    cursor: pointer;
-    &:hover {
-        background: #007099;
-        box-shadow: 0 0 5px 2px #ccc;
-    }
-`;
-
 const Textarea = styled.textarea`
     resize: none;
     width: 400px;
@@ -92,8 +69,8 @@ const Test = styled.div`
 const Creator = () => {
     const [username, setUsername] = useState('');
     const [repo, setRepo] = useState('');
-    const [color, setColor] = useState('#ffffff');
-    const [textColor, setTextColor] = useState('#000000');
+    const [color, setColor] = useState('#5ed5f3');
+    const [textColor, setTextColor] = useState('#ffffff');
     const [avatar] = useState('');
     const value = `https://bohdanomelianec.github.io/superchat-frontend-challenge/link/${username || 'user'}/${repo || 'repo'}`;
     const values = {
@@ -119,11 +96,6 @@ const Creator = () => {
             <Columns>
                 <Column>
                     <Title>Link options</Title>
-                    <div>
-                        <Label>Choose your avatar:</Label>
-                        <FileLabel htmlFor='myFile'>Select image</FileLabel>
-                        <FileInput id="myFile" type="file" onChange={(e) => console.dir(e.target)} />
-                    </div>
                     <div>
                         <Label htmlFor='color'>Set background color:</Label>
                         <ColorInput id="color" type="color" value={color} onChange={(e) => setColor(e.target.value)} />

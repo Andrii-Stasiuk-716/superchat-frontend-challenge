@@ -9,8 +9,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica Neue, sans-serif;
-    
+    font-family: sans-serif;
+  }
+  body {
+    background: #e6e6e6;
   }
 `;
 

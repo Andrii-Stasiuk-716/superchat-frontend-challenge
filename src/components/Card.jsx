@@ -3,34 +3,43 @@ import { useLocation } from 'react-router';
 import styled from 'styled-components';
 
 const UserInfo = styled.div`
+    position: relative;
     width: 80%;
     margin: 20px auto;
-    background: ${props => props.param.state?.color || '#ccc'};
-    color: ${props => props.param.state?.textColor || '#fff'};
+    background: #f3f3f3;
     border-radius: 10px;
     box-shadow: 0 0 5px 5px #f2f2f2;
+    display: flex;
+    flex-direction: column;
 `;
 
 const Main = styled.div`
     padding: 20px 60px;
     display: flex;
+    flex-direction: column;
     align-items: center;
+
+    background: ${props => props.param.state?.color};
+    color: ${props => props.param.state?.textColor};
+    border-radius: 10px 10px 200px 200px;
 `;
 
-const Bottons = styled.div`
+const Buttons = styled.div`
     
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
     button {
-        padding: 10px;
-        width: 90px;
-        border: none;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        padding: 8px 15px;
+        background: transparent;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        border: 1px solid #fff;
         border-radius: 4px;
-        box-shadow: 1px 1px 2px 1px #ccc;
         cursor: pointer;
         :hover {
-            box-shadow: -1px -1px 2px 1px #ccc;
+            box-shadow: 0px 0px 3px 1px #fff;
         }
     }
 `;
@@ -38,8 +47,11 @@ const Bottons = styled.div`
 const Additional = styled.div`
     padding: 20px 60px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    align-items: strech;
+    background: ${props => props.param.state?.color};
+    border-radius: 150px 150px 10px 10px;
+    color: ${props => props.param.state?.textColor};
 `;
 
 const Avatar = styled.img`
@@ -55,6 +67,28 @@ const UserName = styled.h1`
 const Repo = styled.h2`
     margin: 20px auto;
 `;
+const Header3 = styled.h3`
+    margin: 20px auto;
+`;
+
+const Block = styled.div`
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+`;
+
+const HR = styled.div`
+    width: 1px;
+    height: auto;
+    background: #fff;
+`;
+
+const OList = styled.ol`
+    li {
+        margin: 10px;
+    }
+`;
 
 const Card = () => {
     const [avatar, setAvatar] = useState();
@@ -64,61 +98,62 @@ const Card = () => {
     const state = useLocation();
 
 const fetchData = async () => {
-    fetch(`https://api.github.com/users/${state.state.username}`)
-    .then(res => res.json())
-    .then(res => {
-        setAvatar(res.avatar_url)
-        setName(res.login)
-    });
+    const data = await fetch(`https://api.github.com/users/${state.state.username}`)
 
-    const data = await fetch(`https://api.github.com/users/${state.state.username}/repos`)
-    .then(res => res.json())
-    .then(res => {
-        const repos = res.filter(repo => repo.name === state.state.repo)
-        setRepo(...repos)
-        return repos
-  
-    });
-
-    if(data) {
-       fetch(data[0].contributors_url)
+    if(data.ok) {
+        const responce = await data.json();
+        setAvatar(responce.avatar_url)
+        setName(responce.login)
+    
+        fetch(`https://api.github.com/users/${state.state.username}/repos`)
         .then(res => res.json())
         .then(res => {
-            const contr = res.map(item => item.login);
-            setContr(contr)
-        }) 
+            const repos = res.filter(repo => repo.name === state.state.repo)
+            setRepo(...repos)
+            return repos
+        })
+        .then(repo => {
+            fetch(repo[0]?.contributors_url)
+            .then(res => res.json())
+            .then(res => {
+                const contr = res.map(item => item.login);
+                setContr(contr)
+            }) 
+        });
     }
 }
     useEffect(() => {
         fetchData()
     }, [])
 
-    
-    const getUser = () => {
-        
-        
-    }
 
     return (
-        <UserInfo param={state}>
-            <Main>
+        <UserInfo >
+            <Main param={state}>
                 <Avatar src={avatar}/>
                 <UserName>{name}</UserName>
             </Main>
-            <Bottons>
-                <button onClick={getUser}>Follow</button>
-                <button>Star {repo.stargazers_count}</button>
-                <button>Contributors</button>
-                <button>click</button>
-            </Bottons>
-            <Additional>
-                <Repo>repository: {repo.name || 'your repository'}</Repo>
-                <p>{repo.description}</p>
-                <ul>
+            <Buttons>
+                <button>Star {repo ? repo.stargazers_count : '?'}</button>
+            </Buttons>
+            
+            <Repo>{repo ? repo.name : 'Your repository'}</Repo>
+            <Additional param={state}>
+                <Block>
+                    <Header3>Short description</Header3>
+                    <p>{repo ? repo.description : 'No description'}</p>
+                </Block>
+                <HR />
+                <Block>
+                    <Header3>Top contributors</Header3>
+                    <OList>
                     {
-                        contributors.map(item => <li>{item}</li>)
+                        contributors.map(item => <li key={item.toString()}>{item}</li>)
                     }
-                </ul>
+                    </OList>
+                </Block>
+                
+                
             </Additional>
             
             
