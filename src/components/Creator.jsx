@@ -46,6 +46,17 @@ const ColorInput = styled.input`
     cursor: pointer;
 `;
 
+const TestLink = styled.div`
+    padding: 5px;
+    width: 70px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+`;
+
 const Textarea = styled.textarea`
     resize: none;
     width: 400px;
@@ -100,7 +111,7 @@ const Creator = () => {
                 </Column>
                 <Column>
                     <Title>Preview</Title>
-                    <Link to={`/superchat-frontend-challenge/link/${username || 'user'}/${repo|| 'repo'}/?c=${color}&tc=${textColor}`} >link</Link>
+                    <TestLink><Link to={`/superchat-frontend-challenge/link/${username || 'user'}/${repo|| 'repo'}/?c=${color}&tc=${textColor}`} >Test link</Link></TestLink>
                     <Textarea
                         value={value}
                         readOnly />
