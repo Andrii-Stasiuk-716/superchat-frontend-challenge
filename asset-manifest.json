@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/superchat-frontend-challenge/static/js/main.1f4e1e6d.chunk.js",
-    "main.js.map": "/superchat-frontend-challenge/static/js/main.1f4e1e6d.chunk.js.map",
+    "main.js": "/superchat-frontend-challenge/static/js/main.58263dfc.chunk.js",
+    "main.js.map": "/superchat-frontend-challenge/static/js/main.58263dfc.chunk.js.map",
     "runtime-main.js": "/superchat-frontend-challenge/static/js/runtime-main.4edd120e.js",
     "runtime-main.js.map": "/superchat-frontend-challenge/static/js/runtime-main.4edd120e.js.map",
     "static/js/2.68d94dd0.chunk.js": "/superchat-frontend-challenge/static/js/2.68d94dd0.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.4edd120e.js",
     "static/js/2.68d94dd0.chunk.js",
-    "static/js/main.1f4e1e6d.chunk.js"
+    "static/js/main.58263dfc.chunk.js"
   ]
 }
