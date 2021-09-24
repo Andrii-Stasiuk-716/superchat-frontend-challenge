@@ -82,7 +82,7 @@ const Creator = () => {
     const [repo, setRepo] = useState('');
     const [color, setColor] = useState('5ed5f3');
     const [textColor, setTextColor] = useState('ffffff');
-    const value = `https://bohdanomelianec.github.io/superchat-frontend-challenge/link/${username || 'user'}/${repo || 'repo'}/?c=${color}&tc=${textColor}`;
+    const value = `https://reactrocket.github.io/superchat-frontend-challenge/link/${username || 'user'}/${repo || 'repo'}/?c=${color}&tc=${textColor}`;
 
     return (
         <div>
